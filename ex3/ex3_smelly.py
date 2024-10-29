@@ -1,3 +1,16 @@
+class Calculations:
+    def calculate_tax(self):
+        pass 
+    def calculate_discount(self):
+        pass 
+
+class Item:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+
+
 class Electronics:
     def __init__(self, name, price):
         self.name = name

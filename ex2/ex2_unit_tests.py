@@ -1,22 +1,35 @@
 import unittest
+from abc import ABC, abstractmethod
+import math
 from ex2_smelly import Shape  # Adjust if the class is in another file
 
-class TestShape(unittest.TestCase):
+class Shape(ABC):
+    @abstractmethod
+    def calculate_area(self):
+        pass
 
-    def test_calculate_area_circle(self):
-        # Test for a circle with radius 5
-        result = Shape().calculate_area('circle', radius=5)
-        self.assertAlmostEqual(result, 78.5, places=2)
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
 
-    def test_calculate_area_rectangle(self):
-        # Test for a rectangle with length 4 and width 6
-        result = Shape().calculate_area('rectangle', length=4, width=6)
-        self.assertEqual(result, 24)
+    def calculate_area(self):
+        return math.pi * self.radius ** 2
 
-    def test_calculate_area_triangle(self):
-        # Test for a triangle with base 10 and height 8
-        result = Shape().calculate_area('triangle', base=10, height=8)
-        self.assertEqual(result, 40)
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def calculate_area(self):
+        return self.length * self.width
+
+class Triangle(Shape):
+    def __init__(self, base, height):
+        self.base = base
+        self.height = height
+
+    def calculate_area(self):
+        return 0.5 * self.base * self.height
 
 
 if __name__ == '__main__':
